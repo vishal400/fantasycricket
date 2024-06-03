@@ -1,0 +1,9 @@
+/.cache
+/.config
+/.upm
+/.env
+/node_modules
+/.replit
+/nodetask-1.zip
+/package-lock.json
+/replit_zip_error_log.txt
