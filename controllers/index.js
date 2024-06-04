@@ -148,8 +148,9 @@ module.exports.processResults = async (req, res) => {
 
         // calculate points for teamentries
         teamEntries.forEach(async (teamEntry) => {
-            const captain = teamEntry.captain;
-            const viceCaptain = teamEntry.viceCaptain;
+            const captain = teamEntry.captain.Player;
+            const viceCaptain = teamEntry.viceCaptain.Player;
+
             teamEntry.points = 0;
 
             teamEntry.players.forEach((player) => {
@@ -157,8 +158,9 @@ module.exports.processResults = async (req, res) => {
                     teamEntry.points += player.points ? player.points * 2 : 0;
                 } else if (player.Player === viceCaptain) {
                     teamEntry.points += player.points ? player.points * 1.5 : 0;
+                }else{
+                    teamEntry.points += player.points ? player.points : 0;
                 }
-                teamEntry.points += player.points ? player.points : 0;
             });
 
             await teamEntry.save();
